@@ -1,0 +1,19 @@
+{
+  "name": "simple-url-availability-checker",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.7.2",
+    "@aws-sdk/client-sns": "^3.52.0",
+    "@types/nodemailer": "^6.4.4",
+    "@types/node": "^16.11.7",
+    "typescript": "^4.5.5",
+    "ts-node": "^10.5.0"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "test-alert-email": "ts-node test/emailAlerter.ts",
+    "test-alert-aws": "ts-node test/awsAlerter.ts"
+  }
+}

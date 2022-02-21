@@ -3,12 +3,7 @@ import { Alerter } from "../alerter";
 import * as nodemailer from "nodemailer";
 import * as SMTPTransport from "nodemailer/lib/smtp-transport";
 
-interface IEmailSettings {
-  user: string;
-  pass: string;
-  email_to: string;
-  email_subject: string;
-}
+interface IEmailSettings { user: string; pass: string; email_to: string; email_subject: string; }
 
 export class EmailAlerter extends Alerter {
   private email_settings: IEmailSettings = {} as IEmailSettings;

@@ -1,7 +1,9 @@
-FROM node:16
+FROM node:20-alpine
 
 WORKDIR /app
-COPY . .
-RUN yarn
+COPY package*.json ./
+RUN npm ci --only=production
 
-CMD ["yarn", "start"]
+COPY . .
+
+CMD ["npm", "start"]

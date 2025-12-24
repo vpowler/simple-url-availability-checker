@@ -43,7 +43,7 @@ The application is configured using environment variables. You can set these in 
 ### General Settings
 
 | Variable  | Default | Description |
-| t--- | --- | --- |
+| --- | --- | --- |
 | `URLS` | `https://www.google.com https://www.amazon.com` | Space-separated list of URLs to monitor. |
 | `TIMEOUT` | `1000` | Request timeout in milliseconds. |
 | `SLEEP` | `15` | Sleep time (seconds) between checking all URLs. |

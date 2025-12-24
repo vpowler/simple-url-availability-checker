@@ -1,30 +1,21 @@
-import { config } from "./config/config";
-import { sleep } from "./package/util/sleep";
-import { Checker } from "./package/url/checker";
+import { config } from "./config";
+import { Checker } from "./lib/checker";
+import { logger } from "./lib/logger";
 
-console.log(`
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms * 1000));
 
-    -----------------
+logger.info("-----------------");
+logger.info("URL availability checker.");
+logger.info(`Config: ${JSON.stringify(config)}`);
+logger.info("Starting.");
+logger.info("-----------------");
 
-    URL availability checker.
-    
-    Config: ${JSON.stringify(config)}
-    
-    Starting.
-    
-    -----------------
-`);
-
-const urls = config.urlsLine.split(" ");
-const checkers: Checker[] = [];
-
-urls.map((url) => checkers.push(new Checker(url)));
+const urls = config.urlsLine.split(" ").filter(u => u.length > 0);
+const checkers = urls.map(url => new Checker(url));
 
 (async () => {
-  while (1) {
-    for (const checker of checkers) {
-      await checker.urlCheck();
-    }
+  while (true) {
+    await Promise.all(checkers.map(c => c.check()));
     await sleep(config.sleepBetweenChecks);
   }
 })();
